@@ -16,5 +16,5 @@ mkdir -p "$dest"
 # and copies each found file to the destination directory
 for name_part in "${search_names[@]}"
 do
-    find . -type f -name "*$name_part*" -exec cp {} "$dest" \;
+    find /home -type f -name "*$name_part*" -exec cp {} "$dest" \;
 done
