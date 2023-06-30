@@ -26,3 +26,6 @@ for name_part in "${search_names[@]}"
 do
     find /home -type f -name "*$name_part*" -exec cp {} "$dest" \;
 done
+
+# Exibe a mensagem de conclusão da busca
+echo "Busca finalizada com sucesso!!!"
