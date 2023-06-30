@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Verifica se o número de argumentos é maior que 0
+if [ $# -eq 0 ]; then
+    echo "Erro: Nenhum argumento fornecido."
+    echo "Uso: $0 nome_parte1 [nome_parte2 ...]"
+    exit 1
+fi
+
+# Atribui os argumentos a um array chamado search_names
+search_names=("$@")
+
+# O nome da pasta será a data atual com COPIA_DE_GRAVACOES
+folder_name=$(date +"%Y-%m-%d_%H-%M-%S")
+folder_name+="-COPIA_DE_GRAVACOES"
+
+# Define o caminho completo do diretório de destino
+dest="/tmp/$folder_name"
+
+# Cria a nova pasta de destino se ela não existir
+mkdir -p "$dest"
+
+# Encontra todos os arquivos que contêm qualquer uma das partes de nome especificadas no diretório atual e subdiretórios,
+# e copia cada arquivo encontrado para o diretório de destino
+for name_part in "${search_names[@]}"
+do
+    find /home -type f -name "*$name_part*" -exec cp {} "$dest" \;
+done
